@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function Header({ setNickNamae_in_footer }) {
-  const [input, setInput] = useState("");
-
-  // Components //
+function Header({ setNickNamae_in_header }) {
   const InputBox = () => {
-    return <input autoFocus type="text" value={input} onChange={onChange} />;
-  };
+    const [input, setInput] = useState("");
+    const onChange = (e) => {
+      setInput(e.target.value);
+    };
 
-  const SearchButton = () => {
-    return <button onClick={handleSearchButton}> search </button>;
-  };
-
-  ////////////////
-
-  //inputbox change handler
-  const onChange = (e) => {
-    setInput(e.target.value);
-    console.log(input);
-  };
-
-  const handleSearchButton = () => {
-    setNickNamae_in_footer(input);
+    const handleSearchButton = () => {
+      setNickNamae_in_header(input);
+      setInput("");
+    };
+    return (
+      <div>
+        <input
+          type="text"
+          name="nickName"
+          value={input}
+          onChange={onChange}
+          spellCheck={false}
+        />
+        <button onClick={handleSearchButton}> search </button>
+      </div>
+    );
   };
 
   return (
     <div>
       <InputBox />
-      <SearchButton />
     </div>
   );
 }

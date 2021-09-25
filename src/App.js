@@ -6,14 +6,14 @@ import "./App.css";
 
 function App() {
   const [nickName, setNickName] = useState("");
-  const setNickNamae_in_footer = (nickName) => {
+  const setNickNamae_in_header = (nickName) => {
     setNickName(nickName);
   };
 
   return (
     <div className="app">
       <div className="header_container">
-        <Header setNickNamae_in_footer={setNickNamae_in_footer} />
+        <Header setNickNamae_in_header={setNickNamae_in_header} />
       </div>
       <div className="main_container">
         <Main nickName={nickName} />
