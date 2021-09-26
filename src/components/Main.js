@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
+import "./Main.css";
 
 function Main({ nickName }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,8 +10,6 @@ function Main({ nickName }) {
 
   useEffect(() => {
     if (nickName) {
-      console.log(nickName);
-
       getSummonerData()
         .then((rsts) => {
           const name = rsts.name;
@@ -27,21 +26,36 @@ function Main({ nickName }) {
           return encryptedId;
         })
         .then((encryptedId) => {
-          getLeagueV4(encryptedId).then((rsts) => {
-            const rank = rsts[0].rank;
-            const tier = rsts[0].tier;
-            const leaguePoints = rsts[0].leaguePoints;
-            const wins = rsts[0].wins;
-            const losses = rsts[0].losses;
+          getLeagueV4(encryptedId)
+            .then((rsts) => {
+              let rank, tier, leaguePoints, wins, losses;
+              if (rsts.length == 1) {
+                rank = rsts[0].rank;
+                tier = rsts[0].tier;
+                leaguePoints = rsts[0].leaguePoints;
+                wins = rsts[0].wins;
+                losses = rsts[0].losses;
+              } else {
+                rank = rsts[1].rank;
+                tier = rsts[1].tier;
+                leaguePoints = rsts[1].leaguePoints;
+                wins = rsts[1].wins;
+                losses = rsts[1].losses;
+              }
 
-            setLeagueV4({
-              tier: tier,
-              rank: rank,
-              leaguePoints: leaguePoints,
-              wins: wins,
-              losses: losses,
+              setLeagueV4({
+                tier: tier,
+                rank: rank,
+                leaguePoints: leaguePoints,
+                wins: wins,
+                losses: losses,
+              });
+
+              return rsts;
+            })
+            .catch((rsts) => {
+              console.log("자유랭크 데이터없음");
             });
-          });
           setIsLoading(false);
         });
     }
@@ -70,15 +84,19 @@ function Main({ nickName }) {
           {isLoading ? (
             <div> Loading... </div>
           ) : (
-            <div>
+            <div className="user_data">
+              {console.log(userData)}
               <div> 이름 : {userData.name} </div>
               <div> 레벨 : {userData.summonerLevel} </div>
-              <div> icon : {userData.profileIconId} </div>
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
+                alt="소환사 아이콘"
+                title="소환사 아이콘"
+              />
               <div> id : {userData.encryptedId} </div>
               <div>
                 티어 : {leagueV4.tier} {leagueV4.rank} {leagueV4.leaguePoints}점{" "}
               </div>
-
               <div> 승 : {leagueV4.wins} </div>
               <div> 패 : {leagueV4.losses} </div>
             </div>
