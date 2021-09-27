@@ -44,9 +44,6 @@ function Main({ nickName }) {
       return result.data;
     });
 
-    console.log("getMatchInfo");
-    console.log(matchinfos);
-
     return matchinfos;
   };
 
@@ -113,15 +110,21 @@ function Main({ nickName }) {
           getMatchId(rsts.puuid).then((matchList) => {
             setMatchList(matchList);
 
-            getMatchInfo(matchList).then((matchinfos) => {
-              setMatchInfo(matchinfos);
-              console.log("------------");
-              console.log(matchinfos);
-            });
+            getMatchInfo(matchList)
+              .then((matchinfos) => {
+                const result = [];
+                matchinfos.map((rsts) => {
+                  rsts.then((rsts2) => {
+                    result.push(rsts2);
+                  });
+                });
+                setMatchInfo(result);
+                console.log("result : ", result);
+              })
+              .then(() => {
+                setIsLoading(false);
+              });
           });
-        })
-        .finally(() => {
-          setIsLoading(false);
         });
     }
   }, [nickName]);
@@ -171,7 +174,10 @@ function Main({ nickName }) {
                 <div> 패 : {leagueV4.losses} </div>
                 <div> test : </div>
               </div>
-              <div>match list..</div>
+              <div>
+                match list..{console.log("1231213", matchInfo)}
+                <div>게임모드 :</div>
+              </div>
             </div>
           )}
         </div>
