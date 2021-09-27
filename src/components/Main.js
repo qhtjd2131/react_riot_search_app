@@ -1,15 +1,16 @@
 import { React, useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import Match from "./Match.js";
 import "./Main.css";
 
 function Main({ nickName }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [apiKey] = useState("RGAPI-3fb36ec8-4fc7-419d-8748-b88158e96b9d");
+  const [apiKey] = useState("RGAPI-9c45e606-f477-4f4b-bc78-f9438f2187b0");
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
 
   const [matchList, setMatchList] = useState([]);
-  const [matchInfo, setMatchInfo] = useState([]);
+  const [matchInfo, setMatchInfo] = useState();
 
   const getSummonerData = useCallback(async () => {
     const result = await axios.get(
@@ -36,13 +37,15 @@ function Main({ nickName }) {
   };
 
   const getMatchInfo = async (matchlist) => {
-    const matchinfos = matchlist.map(async (match) => {
-      const result = await axios.get(
-        `https://asia.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${apiKey}`
-      );
+    const matchinfos = await Promise.all(
+      matchlist.map(async (match) => {
+        const result = await axios.get(
+          `https://asia.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${apiKey}`
+        );
 
-      return result.data;
-    });
+        return result.data;
+      })
+    );
 
     return matchinfos;
   };
@@ -88,10 +91,7 @@ function Main({ nickName }) {
     if (nickName) {
       getSummonerData()
         .then((rsts) => {
-          setUserData({
-            ...rsts,
-          });
-
+          setUserData({ ...rsts });
           return rsts;
         })
         .then((rsts) => {
@@ -112,14 +112,7 @@ function Main({ nickName }) {
 
             getMatchInfo(matchList)
               .then((matchinfos) => {
-                const result = [];
-                matchinfos.map((rsts) => {
-                  rsts.then((rsts2) => {
-                    result.push(rsts2);
-                  });
-                });
-                setMatchInfo(result);
-                console.log("result : ", result);
+                setMatchInfo(matchinfos);
               })
               .then(() => {
                 setIsLoading(false);
@@ -172,11 +165,16 @@ function Main({ nickName }) {
                 </div>
                 <div> 승 : {leagueV4.wins} </div>
                 <div> 패 : {leagueV4.losses} </div>
-                <div> test : </div>
               </div>
               <div>
-                match list..{console.log("1231213", matchInfo)}
-                <div>게임모드 :</div>
+                <div>
+                  {console.log(matchInfo)}
+                  {(matchInfo ?? []).map((match) => {
+                    return (
+                      <Match key={match.info.gameName} info={match.info} />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
