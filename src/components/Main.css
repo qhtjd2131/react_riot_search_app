@@ -1,4 +1,17 @@
+.user_data {
+  display: flex;
+  margin-bottom: 30px;
+}
+
 .user_data img {
   width: 100px;
   height: 100px;
+}
+
+.user_data_info_name {
+  font-weight: bolder;
+}
+
+.winorloss {
+  display: flex;
 }

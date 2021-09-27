@@ -8,8 +8,6 @@ function Main({ nickName }) {
   const [apiKey] = useState("RGAPI-9c45e606-f477-4f4b-bc78-f9438f2187b0");
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
-
-  const [matchList, setMatchList] = useState([]);
   const [matchInfo, setMatchInfo] = useState();
 
   const getSummonerData = useCallback(async () => {
@@ -108,8 +106,6 @@ function Main({ nickName }) {
             });
 
           getMatchId(rsts.puuid).then((matchList) => {
-            setMatchList(matchList);
-
             getMatchInfo(matchList)
               .then((matchinfos) => {
                 setMatchInfo(matchinfos);
@@ -149,30 +145,32 @@ function Main({ nickName }) {
           ) : (
             <div>
               <div className="user_data">
-                <div> 이름 : {userData.name} </div>
-                <div> 레벨 : {userData.summonerLevel} </div>
                 <img
                   src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
                   alt="소환사 아이콘"
                   title="소환사 아이콘"
                 />
-                <div> id : {userData.id} </div>
-                <div> encryptedAccountId : {userData.encryptedAccountId} </div>
-                <div> puuid : {userData.puuid} </div>
-                <div>
-                  티어 : {leagueV4.tier} {leagueV4.rank} {leagueV4.leaguePoints}
-                  점{" "}
+                <div className="user_data_info">
+                  <div className="user_data_info_name">
+                    이름 : {userData.name}
+                  </div>
+                  <div> 레벨 : {userData.summonerLevel} </div>
+
+                  <div>
+                    티어 : {leagueV4.tier} {leagueV4.rank}{" "}
+                    {leagueV4.leaguePoints}점
+                  </div>
+                  <div className="winorloss">
+                    <div> 승 : {leagueV4.wins} </div>
+                    <div> 패 : {leagueV4.losses} </div>
+                  </div>
                 </div>
-                <div> 승 : {leagueV4.wins} </div>
-                <div> 패 : {leagueV4.losses} </div>
               </div>
               <div>
                 <div>
                   {console.log(matchInfo)}
                   {(matchInfo ?? []).map((match) => {
-                    return (
-                      <Match key={match.info.gameName} info={match.info} />
-                    );
+                    return <Match key={match.info.gameId} info={match.info} />;
                   })}
                 </div>
               </div>
