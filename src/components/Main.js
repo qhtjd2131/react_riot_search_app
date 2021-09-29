@@ -4,8 +4,9 @@ import Match from "./Match.js";
 import "./Main.css";
 
 function Main({ nickName }) {
+  const apiKey = "RGAPI-e7853e74-3322-43ad-86f8-0369a5e92f8c";
+  const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
-  const [apiKey] = useState("RGAPI-e7853e74-3322-43ad-86f8-0369a5e92f8c");
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
   const [matchInfo, setMatchInfo] = useState();
@@ -29,7 +30,7 @@ function Main({ nickName }) {
 
   const getMatchId = async (puuid) => {
     const result = await axios.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=5&api_key=${apiKey}`
+      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${matchNumber}&api_key=${apiKey}`
     );
 
     return result.data;

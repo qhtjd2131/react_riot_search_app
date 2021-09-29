@@ -43,6 +43,16 @@ function Match({ info, queueIdInfoJson }) {
 
   function getSpellInfo() {}
 
+  function getTime_didPlay() {
+    const currentTime_Object = new Date();
+    const currentTime = currentTime_Object.getTime();
+
+    const time_dp = currentTime - info.gameStartTimestamp - info.gameDuration;
+    const result = millisecond_to_minute_second(time_dp) + " 전에 게임종료";
+
+    return result;
+  }
+
   const Team = (start, end) => {
     return info.participants
       .map((participant) => (
@@ -79,13 +89,14 @@ function Match({ info, queueIdInfoJson }) {
       <div className="gameduration">
         게임시간 : {millisecond_to_minute_second(info.gameDuration)}
       </div>
+      <div className="time_dp">{getTime_didPlay()}</div>
       <div className="queueType"> 큐 타입 : {getQueueType()}</div>
       <div className="team">
         <div className="teamA">
           <div className="win_or_loss">{did_win(0)}</div>
           {Team(0, 5)}
         </div>
-        <div className="vs">vs</div>
+
         <div className="teamB">
           <div className="win_or_loss">{did_win(5)}</div>
           {Team(5, 10)}

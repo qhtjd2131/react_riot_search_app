@@ -1,5 +1,7 @@
 .team {
   display: flex;
+  border: 1px solid black;
+  padding: 15px;
 }
 
 .team .teamA,
