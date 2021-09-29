@@ -1,8 +1,9 @@
 import React from "react";
 import "./Match.css";
 
-function Match({ info, queueIdInfoJson }) {
+function Match({ info, queueIdInfoJson, spellInfoJson }) {
   console.log("info :", info);
+  console.log("spellinfojson:", spellInfoJson);
 
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
@@ -41,7 +42,30 @@ function Match({ info, queueIdInfoJson }) {
     }
   }
 
-  function getSpellInfo() {}
+  function getSpellInfo(participant) {
+    const result = Object.entries(spellInfoJson.data).map((a) => a[1]);
+    const result2 = result.filter((i) => i.key == participant.summoner1Id)[0];
+    const result3 = result.filter((i) => i.key == participant.summoner2Id)[0];
+
+    console.log("result2:", result2);
+    console.log("result3:", result3);
+    return (
+      <div className="spell_image_container">
+        <img
+          className="spell_image"
+          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result2.id}.png`}
+          alt="spell_1"
+          title={result2.id}
+        />
+        <img
+          className="spell_image"
+          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result3.id}.png`}
+          alt="spell_2"
+          title={result3.id}
+        />
+      </div>
+    );
+  }
 
   function getTime_didPlay() {
     const currentTime_Object = new Date();
@@ -64,6 +88,7 @@ function Match({ info, queueIdInfoJson }) {
               alt={participant.championName}
               title={participant.championName}
             />
+            {getSpellInfo(participant)}
             <div className="summoner_name">{participant.summonerName}</div>
             <div className="summoner_kda">
               {participant.kills}/{participant.deaths}/{participant.assists}

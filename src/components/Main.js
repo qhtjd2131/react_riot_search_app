@@ -11,6 +11,7 @@ function Main({ nickName }) {
   const [leagueV4, setLeagueV4] = useState([]);
   const [matchInfo, setMatchInfo] = useState();
   const [queueIdInfo, setQueueIdInfo] = useState();
+  const [spellInfo, setSpellInfo] = useState();
 
   const getSummonerData = useCallback(async () => {
     const result = await axios.get(
@@ -58,6 +59,16 @@ function Main({ nickName }) {
       });
   };
 
+  const getSpellInfoJson = async () => {
+    await axios
+      .get(
+        `http://ddragon.leagueoflegends.com/cdn/11.19.1/data/en_US/summoner.json`
+      )
+      .then((response) => {
+        setSpellInfo(response.data);
+      });
+  };
+
   //   useEffect(() => {
   //     setTest("first useEffect");
   //   }, []);
@@ -97,7 +108,8 @@ function Main({ nickName }) {
   useEffect(() => {
     console.log("useeffect first");
     if (nickName) {
-      getQueueIdJson();
+      getQueueIdJson(); //큐 JSON 가져오기
+      getSpellInfoJson(); //스펠 JSON 가져오기
       getSummonerData()
         .then((rsts) => {
           setUserData({ ...rsts });
@@ -185,6 +197,7 @@ function Main({ nickName }) {
                         key={match.info.gameId}
                         info={match.info}
                         queueIdInfoJson={queueIdInfo}
+                        spellInfoJson={spellInfo}
                       />
                     );
                   })}
