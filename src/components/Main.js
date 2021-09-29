@@ -5,10 +5,11 @@ import "./Main.css";
 
 function Main({ nickName }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [apiKey] = useState("RGAPI-9c45e606-f477-4f4b-bc78-f9438f2187b0");
+  const [apiKey] = useState("RGAPI-e7853e74-3322-43ad-86f8-0369a5e92f8c");
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
   const [matchInfo, setMatchInfo] = useState();
+  const [queueIdInfo, setQueueIdInfo] = useState();
 
   const getSummonerData = useCallback(async () => {
     const result = await axios.get(
@@ -46,6 +47,14 @@ function Main({ nickName }) {
     );
 
     return matchinfos;
+  };
+
+  const getQueueIdJson = async () => {
+    await axios
+      .get(`https://static.developer.riotgames.com/docs/lol/queues.json`)
+      .then((response) => {
+        setQueueIdInfo(response.data);
+      });
   };
 
   //   useEffect(() => {
@@ -87,6 +96,7 @@ function Main({ nickName }) {
   useEffect(() => {
     console.log("useeffect first");
     if (nickName) {
+      getQueueIdJson();
       getSummonerData()
         .then((rsts) => {
           setUserData({ ...rsts });
@@ -168,9 +178,14 @@ function Main({ nickName }) {
               </div>
               <div>
                 <div>
-                  {console.log(matchInfo)}
                   {(matchInfo ?? []).map((match) => {
-                    return <Match key={match.info.gameId} info={match.info} />;
+                    return (
+                      <Match
+                        key={match.info.gameId}
+                        info={match.info}
+                        queueIdInfoJson={queueIdInfo}
+                      />
+                    );
                   })}
                 </div>
               </div>

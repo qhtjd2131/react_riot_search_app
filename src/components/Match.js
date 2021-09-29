@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Match.css";
 
-function Match(info) {
+function Match({ info, queueIdInfoJson }) {
   console.log(info);
 
   function millisecond_to_minute_second(millisecond) {
@@ -14,15 +14,20 @@ function Match(info) {
     }
   }
   function did_win(first_user_in_team) {
-    if (info.info.participants[first_user_in_team].win) {
+    if (info.participants[first_user_in_team].win) {
       return "승 리";
     } else {
       return "패 배";
     }
   }
 
+  function getQueueType() {
+    const result = queueIdInfoJson.filter((i) => i.queueId === info.queueId);
+    return result[0].description;
+  }
+
   const Team = (start, end) => {
-    return info.info.participants
+    return info.participants
       .map((participant) => (
         <div key={participant.summonerName}>
           <img
@@ -37,12 +42,14 @@ function Match(info) {
       ))
       .slice(start, end);
   };
+
   return (
     <div>
-      <div className="gamemode">match mode : {info.info.gameMode}</div>
+      <div className="gamemode">match mode : {info.gameMode}</div>
       <div className="gameduration">
-        게임시간 : {millisecond_to_minute_second(info.info.gameDuration)}
+        게임시간 : {millisecond_to_minute_second(info.gameDuration)}
       </div>
+      <div className="queueType"> 큐 타입 : {getQueueType()}</div>
       <div className="team">
         <div className="teamA">
           <div className="win_or_loss">{did_win(0)}</div>
