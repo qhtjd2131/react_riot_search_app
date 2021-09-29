@@ -9,11 +9,29 @@
   justify-content: center;
   flex-direction: column;
 
-  margin-left: 50px;
-  width: 350px;
+  margin-left: 30px;
+  width: 600px;
+}
+
+.summoner_data {
+  display: flex;
 }
 
 .champion_image {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
+}
+
+.item_container .item {
+  width: 25px;
+  height: 25px;
+}
+.summoner_data .summoner_name {
+  width: 180px;
+  margin-left: 10px;
+}
+
+.summoner_data .summoner_kda {
+  width: 80px;
+  text-align: center;
 }

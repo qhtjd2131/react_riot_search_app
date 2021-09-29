@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Header({ setNickNamae_in_header }) {
   const InputBox = () => {

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Match.css";
 
 function Match({ info, queueIdInfoJson }) {
-  console.log(info);
+  console.log("info :", info);
 
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
@@ -26,18 +26,48 @@ function Match({ info, queueIdInfoJson }) {
     return result[0].description;
   }
 
+  function getItemInfo(item) {
+    if (item > 0) {
+      return (
+        <img
+          className="item"
+          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${item}.png`}
+          alt="item"
+          title="item"
+        />
+      );
+    } else {
+      return <img className="item" alt="" title="null item"></img>;
+    }
+  }
+
+  function getSpellInfo() {}
+
   const Team = (start, end) => {
     return info.participants
       .map((participant) => (
         <div key={participant.summonerName}>
-          <img
-            className="champion_image"
-            src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${participant.championName}.png`}
-            alt="챔피언"
-            title="챔피언"
-          />
-          {participant.summonerName} {participant.kills}/{participant.deaths}/
-          {participant.assists}
+          <div className="summoner_data">
+            <img
+              className="champion_image"
+              src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${participant.championName}.png`}
+              alt={participant.championName}
+              title={participant.championName}
+            />
+            <div className="summoner_name">{participant.summonerName}</div>
+            <div className="summoner_kda">
+              {participant.kills}/{participant.deaths}/{participant.assists}
+            </div>
+            <div className="item_container">
+              {getItemInfo(participant.item0)}
+              {getItemInfo(participant.item1)}
+              {getItemInfo(participant.item2)}
+              {getItemInfo(participant.item3)}
+              {getItemInfo(participant.item4)}
+              {getItemInfo(participant.item5)}
+              {getItemInfo(participant.item6)}
+            </div>
+          </div>
         </div>
       ))
       .slice(start, end);

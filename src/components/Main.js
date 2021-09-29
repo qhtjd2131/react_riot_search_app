@@ -29,7 +29,7 @@ function Main({ nickName }) {
 
   const getMatchId = async (puuid) => {
     const result = await axios.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=3&api_key=${apiKey}`
+      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=5&api_key=${apiKey}`
     );
 
     return result.data;
