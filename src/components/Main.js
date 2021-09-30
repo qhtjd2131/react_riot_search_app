@@ -1,4 +1,4 @@
-import { React, useCallback, useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
 import Match from "./Match.js";
 import "./Main.css";
@@ -56,11 +56,9 @@ function Main({ nickName }) {
         const result = await axios.get(
           `https://asia.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${apiKey}`
         );
-
         return result.data;
       })
     );
-
     return matchinfos;
   };
 
@@ -115,10 +113,6 @@ function Main({ nickName }) {
           });
         })
         .catch((error) => {
-          //   console.log("api 호출 실패!", error);
-
-          setIsLoading(false);
-          setIsNetworkError(true);
           if (error.response) {
             // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
             console.log(error.response.data);
@@ -133,6 +127,8 @@ function Main({ nickName }) {
             // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
             console.log("Error", error.message);
           }
+          setIsLoading(false);
+          setIsNetworkError(true);
           console.log(error.config);
         });
     }
