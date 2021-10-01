@@ -1,0 +1,19 @@
+.user_data {
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.user_data img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.user_data_info_name {
+  font-weight: bolder;
+}
+
+.wins_and_losses {
+  display: flex;
+}

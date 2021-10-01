@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import Match from "./Match.js";
 import "./Main.css";
+import UserData from "./UserData.js";
 
 function Main({ nickName }) {
   const apiKey = "RGAPI-50b5616b-5017-4888-b2d7-629165125318";
@@ -9,7 +10,7 @@ function Main({ nickName }) {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
-  const [matchInfo, setMatchInfo] = useState();
+  const [matchInfo, setMatchInfo] = useState([]);
   const [queueIdInfo, setQueueIdInfo] = useState();
   const [spellInfo, setSpellInfo] = useState();
   const [isNetworkError, setIsNetworkError] = useState(false);
@@ -73,6 +74,8 @@ function Main({ nickName }) {
 
   useEffect(() => {
     if (nickName) {
+      setIsLoading(true);
+      setIsNetworkError(false);
       getQueueIdJson(); //큐 JSON 가져오기
       getSpellInfoJson(); //스펠 JSON 가져오기
       getSummonerData()
@@ -90,6 +93,7 @@ function Main({ nickName }) {
               }
             })
             .catch(() => {
+              setLeagueV4([]);
               console.log("랭크 데이터없음");
             });
 
@@ -97,6 +101,7 @@ function Main({ nickName }) {
             getMatchInfo(matchList)
               .then((matchinfos) => {
                 setMatchInfo(matchinfos);
+                console.log("match data : ", matchinfos);
               })
               .then(() => {
                 setIsLoading(false);
@@ -139,41 +144,23 @@ function Main({ nickName }) {
                 </div>
               ) : (
                 <div>
-                  <div className="user_data">
-                    <img
-                      src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
-                      alt="소환사 아이콘"
-                      title="소환사 아이콘"
-                    />
-                    <div className="user_data_info">
-                      <div className="user_data_info_name">
-                        이름 : {userData.name}
-                      </div>
-                      <div> 레벨 : {userData.summonerLevel} </div>
-
-                      <div>
-                        티어 : {leagueV4.tier} {leagueV4.rank}{" "}
-                        {leagueV4.leaguePoints}점
-                      </div>
-                      <div className="winorloss">
-                        <div> 승 : {leagueV4.wins} </div>
-                        <div> 패 : {leagueV4.losses} </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      {(matchInfo ?? []).map((match) => {
-                        return (
-                          <Match
-                            key={match.info.gameId}
-                            info={match.info}
-                            queueIdInfoJson={queueIdInfo}
-                            spellInfoJson={spellInfo}
-                          />
-                        );
-                      })}
-                    </div>
+                  <UserData userData={userData} leagueV4={leagueV4} />
+                  <div className="match_container">
+                    {console.log("matchInfo : ", matchInfo)}
+                    {matchInfo.map((match) => {
+                      return (
+                        <Match
+                          key={match.info.gameId}
+                          info={match.info}
+                          queueIdInfoJson={queueIdInfo}
+                          spellInfoJson={spellInfo}
+                        />
+                      );
+                    })}
+                    {matchInfo.length === 0 && (
+                      <div className="cant_find_match"> 매치 데이터 없음 </div>
+                    )}
+                    {!matchInfo && console.log("cant find match info!")}
                   </div>
                 </div>
               )}

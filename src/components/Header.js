@@ -17,11 +17,11 @@ function Header({ setNickNamae_in_header }) {
         <input
           className="input"
           type="text"
-          size="50"
           name="nickName"
           value={input}
           onChange={onChange}
           spellCheck={false}
+          autoComplete="off"
         />
         <button className="addButton" onClick={handleSearchButton}>
           search

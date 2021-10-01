@@ -12,21 +12,13 @@
 .searcher {
   text-align: center;
 }
-.user_data {
+
+.cant_find_match {
+  width: 1000px;
+  height: 300px;
   display: flex;
-  margin-bottom: 30px;
-}
-
-.user_data img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-
-.user_data_info_name {
-  font-weight: bolder;
-}
-
-.winorloss {
-  display: flex;
+  border: 1px solid black;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
 }

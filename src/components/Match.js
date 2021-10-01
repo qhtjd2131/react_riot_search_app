@@ -110,7 +110,7 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
   };
 
   return (
-    <div className="match_container">
+    <div className="match">
       {/* <div className="gamemode">match mode : {info.gameMode}</div> */}
       <div className="gameduration">
         게임시간 : {millisecond_to_minute_second(info.gameDuration)}
