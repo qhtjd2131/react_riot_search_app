@@ -1,13 +1,14 @@
 .header_container {
-  min-height: 100px;
+  min-height: 180px;
   width: 100%;
-  padding: 10px;
+  padding: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  background-color: #4285f4;
 }
 .addButton {
-  width: 100px; /*가로크기*/
+  width: 80px; /*가로크기*/
   height: 30px; /*세로크기*/
   font-size: 20px;
   color: white;
@@ -17,8 +18,6 @@
   outline: none; /*기본테두리안보이게*/
   box-sizing: border-box; /*테두리를 기준으로 박스크기 설정*/
   transition-duration: 0.4s;
-  margin-left: 20px;
-
   cursor: pointer;
 }
 .addButton:hover {
@@ -43,4 +42,19 @@ input[type="text"]:focus {
   box-shadow: 0 0 8px 0 #4285f4;
   background-color: #ffffff;
   color: blue; /*글자색*/
+}
+
+.header_container .logo {
+  font-size: 50px;
+  font-weight: 900;
+  padding: 20px;
+  color: white;
+}
+
+.header_container .input_box {
+  position: relative;
+  display: grid;
+  grid-template-columns: 400px 80px;
+  margin-left: 40px;
+  height: 30px;
 }

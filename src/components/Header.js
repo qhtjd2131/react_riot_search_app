@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./Header.css";
 
 function Header({ setNickNamae_in_header }) {
+  const Logo = () => {
+    return <div className="logo">BOSUNG.GG</div>;
+  };
+
   const InputBox = () => {
     const [input, setInput] = useState("");
     const onChange = (e) => {
@@ -12,8 +16,9 @@ function Header({ setNickNamae_in_header }) {
       setNickNamae_in_header(input);
       setInput("");
     };
+
     return (
-      <div className="header_container">
+      <div className="input_box">
         <input
           className="input"
           type="text"
@@ -30,6 +35,11 @@ function Header({ setNickNamae_in_header }) {
     );
   };
 
-  return <InputBox />;
+  return (
+    <div className="header_container">
+      <Logo />
+      <InputBox />
+    </div>
+  );
 }
 export default Header;

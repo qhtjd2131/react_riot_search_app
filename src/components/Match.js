@@ -28,6 +28,19 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
 
   function getQueueType() {
     const result = queueIdInfoJson.filter((i) => i.queueId === info.queueId);
+
+    const queueId = info.queueId;
+    if (queueId === 420) {
+      return "솔로랭크";
+    } else if (queueId === 430) {
+      return "일반";
+    } else if (queueId === 440) {
+      return "자유랭크";
+    } else if (queueId === 900) {
+      return "URF";
+    } else if (queueId === 450) {
+      return "칼바람";
+    }
     return result[0].description;
   }
 
@@ -50,6 +63,12 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
     const result = Object.entries(spellInfoJson.data).map((a) => a[1]);
     const result2 = result.filter((i) => i.key == participant.summoner1Id)[0];
     const result3 = result.filter((i) => i.key == participant.summoner2Id)[0];
+    console.log("result:", result);
+    console.log("resulst2 :", result2);
+    console.log("resulst3 :", result3);
+    console.log(participant);
+    console.log("parcitipant.summoner1Id :", participant.summoner1Id);
+    console.log("parcitipant.summoner2Id :", participant.summoner2Id);
     return (
       <div className="spell_image_container">
         <img

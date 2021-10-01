@@ -5,7 +5,7 @@ import "./Main.css";
 import UserData from "./UserData.js";
 
 function Main({ nickName }) {
-  const apiKey = "RGAPI-50b5616b-5017-4888-b2d7-629165125318";
+  const apiKey = "RGAPI-031b77ce-f35c-4c2a-b281-0fcb674c9509";
   const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState([]);
@@ -86,11 +86,13 @@ function Main({ nickName }) {
         .then((rsts) => {
           getLeagueV4(rsts.id)
             .then((rsts) => {
-              if (rsts[0].queueType === "RANKED_SOLO_5x5") {
-                setLeagueV4({ ...rsts[0] });
-              } else if (rsts[1].queueType === "RANKED_SOLO_5x5") {
-                setLeagueV4({ ...rsts[1] });
-              }
+              //   if (rsts[0].queueType === "RANKED_SOLO_5x5") {
+              //     setLeagueV4({ ...rsts[0] });
+              //   } else if (rsts[1].queueType === "RANKED_SOLO_5x5") {
+              //     setLeagueV4({ ...rsts[1] });
+              //   }
+              setLeagueV4(rsts);
+              console.log("rsts :", rsts);
             })
             .catch(() => {
               setLeagueV4([]);
@@ -146,7 +148,6 @@ function Main({ nickName }) {
                 <div>
                   <UserData userData={userData} leagueV4={leagueV4} />
                   <div className="match_container">
-                    {console.log("matchInfo : ", matchInfo)}
                     {matchInfo.map((match) => {
                       return (
                         <Match
@@ -160,7 +161,6 @@ function Main({ nickName }) {
                     {matchInfo.length === 0 && (
                       <div className="cant_find_match"> 매치 데이터 없음 </div>
                     )}
-                    {!matchInfo && console.log("cant find match info!")}
                   </div>
                 </div>
               )}

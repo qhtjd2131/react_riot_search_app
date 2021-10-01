@@ -2,11 +2,15 @@
   width: 100%;
   display: flex;
   margin-bottom: 30px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .user_data img {
   width: 100px;
   height: 100px;
+  border-radius: 15px;
   margin-right: 10px;
 }
 
