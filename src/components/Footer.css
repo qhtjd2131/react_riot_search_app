@@ -1,0 +1,8 @@
+.footer_container {
+  min-height: 100px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}

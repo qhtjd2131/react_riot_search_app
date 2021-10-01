@@ -1,18 +1,20 @@
 import React from "react";
+import "./Footer.css";
 
 const ProducerName = () => {
-  return <div> Producer : bosung </div>;
+  return <div className="producer_name"> Producer : bosung </div>;
 };
 
 const ProducerPhoneNumber = () => {
-  return <div> 010 - XXXX - XXXX </div>;
+  return <div className="producer_phone"> 010 - XXXX - XXXX </div>;
 };
 function Footer() {
   return (
-    <div>
-      <ProducerName />
-
-      <ProducerPhoneNumber />
+    <div className="footer_container">
+      <div className="producer">
+        <ProducerName />
+        <ProducerPhoneNumber />
+      </div>
     </div>
   );
 }

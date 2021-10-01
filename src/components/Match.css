@@ -12,7 +12,7 @@
   flex-direction: column;
 
   margin-left: 30px;
-  width: 600px;
+  width: 500px;
 }
 
 .summoner_data {
@@ -29,7 +29,7 @@
   height: 25px;
 }
 .summoner_data .summoner_name {
-  width: 180px;
+  width: 150px;
   margin-left: 10px;
 }
 

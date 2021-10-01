@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Header.css";
 
 function Header({ setNickNamae_in_header }) {
   const InputBox = () => {
@@ -12,23 +13,23 @@ function Header({ setNickNamae_in_header }) {
       setInput("");
     };
     return (
-      <div>
+      <div className="header_container">
         <input
+          className="input"
           type="text"
+          size="50"
           name="nickName"
           value={input}
           onChange={onChange}
           spellCheck={false}
         />
-        <button onClick={handleSearchButton}> search </button>
+        <button className="addButton" onClick={handleSearchButton}>
+          search
+        </button>
       </div>
     );
   };
 
-  return (
-    <div>
-      <InputBox />
-    </div>
-  );
+  return <InputBox />;
 }
 export default Header;

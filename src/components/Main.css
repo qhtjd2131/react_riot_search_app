@@ -1,3 +1,17 @@
+.main_container {
+  padding: 10px;
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #4285f4;
+}
+
+.loader,
+.searcher {
+  text-align: center;
+}
 .user_data {
   display: flex;
   margin-bottom: 30px;
@@ -6,6 +20,7 @@
 .user_data img {
   width: 100px;
   height: 100px;
+  margin-right: 10px;
 }
 
 .user_data_info_name {

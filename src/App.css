@@ -1,11 +1,7 @@
-.app .header_container {
-  min-height: 100px;
-}
-.app .main_container {
-  width: 100%;
-  min-height: 700px;
-}
-
-.app .footer_container {
-  min-height: 100px;
+.app {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

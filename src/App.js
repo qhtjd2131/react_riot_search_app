@@ -12,15 +12,9 @@ function App() {
 
   return (
     <div className="app">
-      <div className="header_container">
-        <Header setNickNamae_in_header={setNickNamae_in_header} />
-      </div>
-      <div className="main_container">
-        <Main nickName={nickName} />
-      </div>
-      <div className="footer_container">
-        <Footer />
-      </div>
+      <Header setNickNamae_in_header={setNickNamae_in_header} />
+      <Main nickName={nickName} />
+      <Footer />
     </div>
   );
 }

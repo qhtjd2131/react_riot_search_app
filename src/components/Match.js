@@ -4,9 +4,16 @@ import "./Match.css";
 function Match({ info, queueIdInfoJson, spellInfoJson }) {
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
-      const minute = parseInt(millisecond / 60000);
-      const second = parseInt((millisecond % 60000) / 1000);
-      const result = minute + "분 " + second + "초";
+      const minutes = parseInt(millisecond / 60000);
+      const seconds = parseInt((millisecond % 60000) / 1000);
+
+      let result = 0;
+      if (minutes > 59) {
+        const hours = parseInt(minutes / 60);
+        result = hours + "시 ";
+      } else {
+        result = minutes + "분 " + seconds + "초";
+      }
 
       return result;
     }
@@ -103,8 +110,8 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
   };
 
   return (
-    <div>
-      <div className="gamemode">match mode : {info.gameMode}</div>
+    <div className="match_container">
+      {/* <div className="gamemode">match mode : {info.gameMode}</div> */}
       <div className="gameduration">
         게임시간 : {millisecond_to_minute_second(info.gameDuration)}
       </div>

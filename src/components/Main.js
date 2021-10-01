@@ -4,7 +4,7 @@ import Match from "./Match.js";
 import "./Main.css";
 
 function Main({ nickName }) {
-  const apiKey = "RGAPI-50b5616b-5017-4888-b2d7-629165125318--";
+  const apiKey = "RGAPI-50b5616b-5017-4888-b2d7-629165125318";
   const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState([]);
@@ -14,15 +14,6 @@ function Main({ nickName }) {
   const [spellInfo, setSpellInfo] = useState();
   const [isNetworkError, setIsNetworkError] = useState(false);
 
-  //   const getSummonerData = async () => {
-  //     await axios
-  //       .get(
-  //         `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickName}?api_key=${apiKey}`
-  //       )
-  //       .then((result) => {
-  //         return result.data;
-  //       });
-  //   };
   const getSummonerData = async () => {
     console.log("getSummonerData() 1");
     const result = await axios.get(
@@ -134,26 +125,8 @@ function Main({ nickName }) {
     }
   }, [nickName]);
 
-  //   useEffect(() => {
-  //     if (matchList) {
-  //       console.log("useeffect second with match list   ");
-
-  //       getMatchInfo().then((matchinfos) => {
-  //         setMatchInfo(...matchinfos);
-  //         console.log("2", matchinfos);
-  //       });
-  //     }
-  //   }, [matchList]);
-
-  //   useEffect(() => {
-  //     if (matchInfo) {
-  //       console.log("useeffect third with match info");
-  //       console.log("3" + matchInfo);
-  //     }
-  //   }, [matchInfo]);
-
   return (
-    <section>
+    <section className="main_container">
       {nickName ? (
         <div>
           {isLoading ? (
