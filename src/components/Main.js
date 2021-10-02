@@ -86,11 +86,6 @@ function Main({ nickName }) {
         .then((rsts) => {
           getLeagueV4(rsts.id)
             .then((rsts) => {
-              //   if (rsts[0].queueType === "RANKED_SOLO_5x5") {
-              //     setLeagueV4({ ...rsts[0] });
-              //   } else if (rsts[1].queueType === "RANKED_SOLO_5x5") {
-              //     setLeagueV4({ ...rsts[1] });
-              //   }
               setLeagueV4(rsts);
               console.log("rsts :", rsts);
             })
@@ -103,7 +98,6 @@ function Main({ nickName }) {
             getMatchInfo(matchList)
               .then((matchinfos) => {
                 setMatchInfo(matchinfos);
-                console.log("match data : ", matchinfos);
               })
               .then(() => {
                 setIsLoading(false);
@@ -168,7 +162,9 @@ function Main({ nickName }) {
           )}
         </div>
       ) : (
-        <div className="searcher"> 검색해주세요 </div>
+        <div className="searcher">
+          검색해주세요 <img src="images/Emblem_Bronze.png" />
+        </div>
       )}
     </section>
   );

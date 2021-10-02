@@ -63,12 +63,7 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
     const result = Object.entries(spellInfoJson.data).map((a) => a[1]);
     const result2 = result.filter((i) => i.key == participant.summoner1Id)[0];
     const result3 = result.filter((i) => i.key == participant.summoner2Id)[0];
-    console.log("result:", result);
-    console.log("resulst2 :", result2);
-    console.log("resulst3 :", result3);
-    console.log(participant);
-    console.log("parcitipant.summoner1Id :", participant.summoner1Id);
-    console.log("parcitipant.summoner2Id :", participant.summoner2Id);
+
     return (
       <div className="spell_image_container">
         <img
