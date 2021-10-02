@@ -1,20 +1,29 @@
 {
   "files": {
-    "main.css": "/react_riot_search_app/static/css/main.93f0d388.chunk.css",
-    "main.js": "/react_riot_search_app/static/js/main.b7830787.chunk.js",
-    "main.js.map": "/react_riot_search_app/static/js/main.b7830787.chunk.js.map",
+    "main.css": "/react_riot_search_app/static/css/main.4b96cde8.chunk.css",
+    "main.js": "/react_riot_search_app/static/js/main.d2b29ce0.chunk.js",
+    "main.js.map": "/react_riot_search_app/static/js/main.d2b29ce0.chunk.js.map",
     "runtime-main.js": "/react_riot_search_app/static/js/runtime-main.d0adc29e.js",
     "runtime-main.js.map": "/react_riot_search_app/static/js/runtime-main.d0adc29e.js.map",
-    "static/js/2.84657354.chunk.js": "/react_riot_search_app/static/js/2.84657354.chunk.js",
-    "static/js/2.84657354.chunk.js.map": "/react_riot_search_app/static/js/2.84657354.chunk.js.map",
+    "static/js/2.8a5b40f5.chunk.js": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js",
+    "static/js/2.8a5b40f5.chunk.js.map": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js.map",
     "index.html": "/react_riot_search_app/index.html",
-    "static/css/main.93f0d388.chunk.css.map": "/react_riot_search_app/static/css/main.93f0d388.chunk.css.map",
-    "static/js/2.84657354.chunk.js.LICENSE.txt": "/react_riot_search_app/static/js/2.84657354.chunk.js.LICENSE.txt"
+    "static/css/main.4b96cde8.chunk.css.map": "/react_riot_search_app/static/css/main.4b96cde8.chunk.css.map",
+    "static/js/2.8a5b40f5.chunk.js.LICENSE.txt": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js.LICENSE.txt",
+    "static/media/Emblem_Bronze.ad96bf19.png": "/react_riot_search_app/static/media/Emblem_Bronze.ad96bf19.png",
+    "static/media/Emblem_Challenger.bcddbed6.png": "/react_riot_search_app/static/media/Emblem_Challenger.bcddbed6.png",
+    "static/media/Emblem_Diamond.8249cef1.png": "/react_riot_search_app/static/media/Emblem_Diamond.8249cef1.png",
+    "static/media/Emblem_Gold.617f139e.png": "/react_riot_search_app/static/media/Emblem_Gold.617f139e.png",
+    "static/media/Emblem_Grandmaster.9a64d726.png": "/react_riot_search_app/static/media/Emblem_Grandmaster.9a64d726.png",
+    "static/media/Emblem_Iron.9c3d63ce.png": "/react_riot_search_app/static/media/Emblem_Iron.9c3d63ce.png",
+    "static/media/Emblem_Master.6cebbe60.png": "/react_riot_search_app/static/media/Emblem_Master.6cebbe60.png",
+    "static/media/Emblem_Platinum.26c61fd5.png": "/react_riot_search_app/static/media/Emblem_Platinum.26c61fd5.png",
+    "static/media/Emblem_Silver.ba092276.png": "/react_riot_search_app/static/media/Emblem_Silver.ba092276.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d0adc29e.js",
-    "static/js/2.84657354.chunk.js",
-    "static/css/main.93f0d388.chunk.css",
-    "static/js/main.b7830787.chunk.js"
+    "static/js/2.8a5b40f5.chunk.js",
+    "static/css/main.4b96cde8.chunk.css",
+    "static/js/main.d2b29ce0.chunk.js"
   ]
 }
