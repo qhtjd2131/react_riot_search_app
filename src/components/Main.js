@@ -17,16 +17,16 @@ function Main({ nickName }) {
 
   useEffect(() => {
     const getSummonerData = async () => {
-      console.log("getSummonerData() 1");
+      // console.log("getSummonerData() 1");
       const result = await axios.get(
         `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickName}?api_key=${apiKey}`
       );
-      console.log("getSummonerData() 2");
+      // console.log("getSummonerData() 2");
       return result.data;
     };
 
     const getLeagueV4 = async (encryptedId) => {
-      console.log("getLeagueV4()");
+      // console.log("getLeagueV4()");
       const result = await axios.get(
         `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encryptedId}?api_key=${apiKey}`
       );
@@ -34,7 +34,7 @@ function Main({ nickName }) {
     };
 
     const getMatchId = async (puuid) => {
-      console.log("getMatchId()");
+      // console.log("getMatchId()");
       const result = await axios.get(
         `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${matchNumber}&api_key=${apiKey}`
       );
@@ -43,7 +43,7 @@ function Main({ nickName }) {
     };
 
     const getMatchInfo = async (matchlist) => {
-      console.log("getMatchInfo()");
+      // console.log("getMatchInfo()");
       const matchinfos = await Promise.all(
         matchlist.map(async (match) => {
           const result = await axios.get(
@@ -66,7 +66,7 @@ function Main({ nickName }) {
     const getSpellInfoJson = async () => {
       await axios
         .get(
-          `http://ddragon.leagueoflegends.com/cdn/11.19.1/data/en_US/summoner.json`
+          `https://ddragon.leagueoflegends.com/cdn/11.19.1/data/en_US/summoner.json`
         )
         .then((response) => {
           setSpellInfo(response.data);

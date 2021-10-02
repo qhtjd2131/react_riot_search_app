@@ -61,7 +61,7 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
       return (
         <img
           className="item"
-          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${item}.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${item}.png`}
           alt="item"
           title="item"
         />
@@ -84,13 +84,13 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
       <div className="spell_image_container">
         <img
           className="spell_image"
-          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result2.id}.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result2.id}.png`}
           alt="spell_1"
           title={result2.id}
         />
         <img
           className="spell_image"
-          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result3.id}.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/${result3.id}.png`}
           alt="spell_2"
           title={result3.id}
         />
@@ -115,7 +115,7 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
           <div className="summoner_data">
             <img
               className="champion_image"
-              src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${participant.championName}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${participant.championName}.png`}
               alt={participant.championName}
               title={participant.championName}
             />
