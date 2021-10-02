@@ -1,23 +1,70 @@
 .user_data {
-  width: 100%;
-  display: flex;
+  width: inherit;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 30px;
-  border: 2px solid black;
+  border: 1px solid rgb(222, 222, 222);
+
   border-radius: 15px;
   padding: 20px;
+  background-color: #f5f5f5;
 }
 
-.user_data img {
-  width: 100px;
-  height: 100px;
+.tier_img img {
+  width: 150px;
+  height: 150px;
+}
+.user_data .user_info .summoner_icon img {
+  display: flex;
+  width: 150px;
+  height: 150px;
   border-radius: 15px;
-  margin-right: 10px;
 }
 
-.user_data_info_name {
-  font-weight: bolder;
+.name {
+  font-weight: 600;
+  font-size: 35px;
+}
+
+.level {
+  font-weight: 500;
+  font-size: 25px;
 }
 
 .wins_and_losses {
   display: flex;
+  font-size: 20px;
+}
+.wins {
+  color: blueviolet;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.losses {
+  color: rgb(248, 48, 48);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.solorank,
+.flexrank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30px;
+}
+
+.user_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

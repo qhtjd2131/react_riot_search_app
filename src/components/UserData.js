@@ -1,5 +1,6 @@
 import React from "react";
 import "./UserData.css";
+import UNRANK from "./Emblem_Unranked.png";
 import IRON from "./Emblem_Iron.png";
 import BRONZE from "./Emblem_Bronze.png";
 import SILVER from "./Emblem_Silver.png";
@@ -41,30 +42,30 @@ function UserData({ userData, leagueV4 }) {
       case "CHALLENGER":
         result = CHALLENGER;
         break;
+      default:
+        result = UNRANK;
     }
 
     return result;
   }
   const SummonerIcon = () => {
     return (
-      <img
-        src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
-        alt="소환사 아이콘"
-        title="소환사 아이콘"
-      />
+      <div className="summoner_icon">
+        <img
+          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
+          alt="소환사 아이콘"
+          title="소환사 아이콘"
+        />
+      </div>
     );
   };
 
   const UserName = () => {
-    return <div className="user_data_info_name">이름 : {userData.name}</div>;
+    return <div className="name">{userData.name}</div>;
   };
 
   const UserLevel = () => {
-    return (
-      <div className="user_data_info_level">
-        레벨 : {userData.summonerLevel}
-      </div>
-    );
+    return <div className="level">Lv.{userData.summonerLevel}</div>;
   };
 
   const UserSoloRankTier = () => {
@@ -74,15 +75,36 @@ function UserData({ userData, leagueV4 }) {
     if (soloRank.length > 0) {
       const result = getTierImage(soloRank[0].tier);
       return (
-        <div className="user_data_info_tier">
-          솔랭티어 : {soloRank[0].tier} {soloRank[0].rank}
-          {soloRank[0].leaguePoints}점
-          <img src={result} alt={soloRank[0].tier} title={soloRank[0].tier} />
+        <div className="solorank">
+          <div className="tier_img">
+            <img src={result} alt={soloRank[0].tier} title={soloRank[0].tier} />
+          </div>
+          <div className="tier">
+            {soloRank[0].tier} {soloRank[0].rank} {soloRank[0].leaguePoints}
+            <div className="wins_and_losses">
+              <div className="wins"> {soloRank[0].wins}W </div>
+              <div className="losses"> {soloRank[0].losses}L </div>
+            </div>
+          </div>
         </div>
       );
     }
 
-    return <div className="user_data_info_tier">솔랭티어 : 언랭</div>;
+    return (
+      <div className="solorank">
+        <div className="tier_img">
+          <img src={getTierImage("unrank")} alt="unrank" title="unrank" />
+        </div>
+
+        <div className="tier">
+          솔랭티어 : 언랭
+          <div className="wins_and_losses">
+            <div className="wins"> 0W </div>
+            <div className="losses"> 0L </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const UserFlexRankTier = () => {
@@ -92,69 +114,47 @@ function UserData({ userData, leagueV4 }) {
     if (flexRank.length > 0) {
       const result = getTierImage(flexRank[0].tier);
       return (
-        <div className="user_data_info_tier">
-          자랭티어 : {flexRank[0].tier} {flexRank[0].rank}
-          {flexRank[0].leaguePoints}점
-          <img src={result} alt={flexRank[0].tier} title={flexRank[0].tier} />
+        <div className="flexrank">
+          <div className="tier_img">
+            <img src={result} alt={flexRank[0].tier} title={flexRank[0].tier} />
+          </div>
+          <div className="tier">
+            {flexRank[0].tier} {flexRank[0].rank} {flexRank[0].leaguePoints}
+            <div className="wins_and_losses">
+              <div className="wins"> {flexRank[0].wins}W </div>
+              <div className="losses"> {flexRank[0].losses}L </div>
+            </div>
+          </div>
         </div>
       );
     }
 
-    return <div className="user_data_info_tier">자랭티어 : 언랭</div>;
-  };
-
-  const UserSoloRankWinsAndLosses = () => {
-    const soloRank = (leagueV4 ?? []).filter(
-      (i) => i.queueType == "RANKED_SOLO_5x5"
-    );
-
-    if (soloRank.length > 0) {
-      return (
-        <div className="wins_and_losses">
-          <div> (솔로랭크) 승 : {soloRank[0].wins} </div>
-          <div> 패 : {soloRank[0].losses} </div>
-        </div>
-      );
-    }
     return (
-      <div className="wins_and_losses">
-        <div> (솔로랭크) 승 : 0 </div>
-        <div> 패 : 0 </div>
+      <div className="flexrank">
+        <div className="tier_img">
+          <img src={getTierImage("unrank")} alt="unrank" title="unrank" />
+        </div>
+
+        <div className="tier">
+          자랭티어 : 언랭
+          <div className="wins_and_losses">
+            <div className="wins"> 0W </div>
+            <div className="losses"> 0L </div>
+          </div>
+        </div>
       </div>
     );
   };
 
-  const UserFlexRankWinsAndLosses = () => {
-    const flexRank = (leagueV4 ?? []).filter(
-      (i) => i.queueType == "RANKED_FLEX_SR"
-    );
-
-    if (flexRank.length > 0) {
-      return (
-        <div className="wins_and_losses">
-          <div> (자유랭크) 승 : {flexRank[0].wins} </div>
-          <div> 패 : {flexRank[0].losses} </div>
-        </div>
-      );
-    }
-    return (
-      <div className="wins_and_losses">
-        <div> (자유랭크) 승 : 0 </div>
-        <div> 패 : 0 </div>
-      </div>
-    );
-  };
   return (
     <div className="user_data">
-      <SummonerIcon />
-      <div className="user_data_info">
-        <UserName />
+      <div className="user_info">
+        <SummonerIcon />
         <UserLevel />
-        <UserSoloRankTier />
-        <UserFlexRankTier />
-        <UserSoloRankWinsAndLosses />
-        <UserFlexRankWinsAndLosses />
+        <UserName />
       </div>
+      <UserSoloRankTier />
+      <UserFlexRankTier />
     </div>
   );
 }

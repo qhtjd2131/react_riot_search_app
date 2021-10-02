@@ -1,12 +1,11 @@
 .main_container {
   padding: 10px;
-  width: 1200px;
+  width: 1300px;
   margin-top: 20px;
   min-height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #4285f4;
 }
 
 .loader,

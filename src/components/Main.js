@@ -162,9 +162,7 @@ function Main({ nickName }) {
           )}
         </div>
       ) : (
-        <div className="searcher">
-          검색해주세요 <img src="images/Emblem_Bronze.png" />
-        </div>
+        <div className="searcher">검색해주세요</div>
       )}
     </section>
   );
