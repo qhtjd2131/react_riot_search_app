@@ -1,15 +1,15 @@
 import React from "react";
 import "./UserData.css";
-import UNRANK from "./Emblem_Unranked.png";
-import IRON from "./Emblem_Iron.png";
-import BRONZE from "./Emblem_Bronze.png";
-import SILVER from "./Emblem_Silver.png";
-import GOLD from "./Emblem_Gold.png";
-import PLATINUM from "./Emblem_Platinum.png";
-import DIAMOND from "./Emblem_Diamond.png";
-import MASTER from "./Emblem_Master.png";
-import GRANDMASTER from "./Emblem_Grandmaster.png";
-import CHALLENGER from "./Emblem_Challenger.png";
+import UNRANK from "../images/Emblem_Unranked.png";
+import IRON from "../images/Emblem_Iron.png";
+import BRONZE from "../images/Emblem_Bronze.png";
+import SILVER from "../images/Emblem_Silver.png";
+import GOLD from "../images/Emblem_Gold.png";
+import PLATINUM from "../images/Emblem_Platinum.png";
+import DIAMOND from "../images/Emblem_Diamond.png";
+import MASTER from "../images/Emblem_Master.png";
+import GRANDMASTER from "../images/Emblem_Grandmaster.png";
+import CHALLENGER from "../images/Emblem_Challenger.png";
 
 function UserData({ userData, leagueV4 }) {
   function getTierImage(soloRankTier) {
@@ -70,7 +70,7 @@ function UserData({ userData, leagueV4 }) {
 
   const UserSoloRankTier = () => {
     const soloRank = (leagueV4 ?? []).filter(
-      (i) => i.queueType == "RANKED_SOLO_5x5"
+      (i) => i.queueType === "RANKED_SOLO_5x5"
     );
     if (soloRank.length > 0) {
       const result = getTierImage(soloRank[0].tier);
@@ -97,7 +97,6 @@ function UserData({ userData, leagueV4 }) {
         </div>
 
         <div className="tier">
-          솔랭티어 : 언랭
           <div className="wins_and_losses">
             <div className="wins"> 0W </div>
             <div className="losses"> 0L </div>
@@ -109,7 +108,7 @@ function UserData({ userData, leagueV4 }) {
 
   const UserFlexRankTier = () => {
     const flexRank = (leagueV4 ?? []).filter(
-      (i) => i.queueType == "RANKED_FLEX_SR"
+      (i) => i.queueType === "RANKED_FLEX_SR"
     );
     if (flexRank.length > 0) {
       const result = getTierImage(flexRank[0].tier);
@@ -136,7 +135,6 @@ function UserData({ userData, leagueV4 }) {
         </div>
 
         <div className="tier">
-          자랭티어 : 언랭
           <div className="wins_and_losses">
             <div className="wins"> 0W </div>
             <div className="losses"> 0L </div>

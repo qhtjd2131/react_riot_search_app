@@ -17,8 +17,8 @@
 }
 .user_data .user_info .summoner_icon img {
   display: flex;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 15px;
 }
 
@@ -29,7 +29,7 @@
 
 .level {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .wins_and_losses {

@@ -1,7 +1,58 @@
-.team {
+.match {
+  margin-bottom: 20px;
+  border: 1px solid rgb(222, 222, 222);
+
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #f5f5f5;
   display: flex;
-  border: 1px solid black;
-  padding: 15px;
+  flex-direction: column;
+  align-items: center;
+}
+.match_header {
+  width: 1240px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 80px;
+  grid-template-areas: "left center right";
+}
+
+.match .match_header_win,
+.match .match_header_loss {
+  grid-area: left;
+  font-size: 30px;
+  align-self: center;
+}
+.match .match_header_win {
+  color: blue;
+}
+.match .match_header_loss {
+  color: red;
+}
+.match .match_header .center {
+  grid-area: center;
+  align-self: center;
+  justify-self: center;
+}
+.center .queueType {
+  font-size: 40px;
+  color: blue;
+}
+.center .gameduration {
+  font-size: 20px;
+  text-align: center;
+}
+
+.match .time_dp {
+  margin-right: 20px;
+  grid-area: right;
+  text-align: end;
+  align-self: flex-end;
+}
+.team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 15px;
 }
 
 .team .teamA,
@@ -10,32 +61,50 @@
   align-content: center;
   justify-content: center;
   flex-direction: column;
-
-  margin-left: 30px;
-  width: 500px;
+  width: 620px;
 }
 
+.winner {
+  padding: 15px;
+  background-color: #6cd3e2;
+}
+
+.looser {
+  padding: 15px;
+  background-color: #e09ea7;
+}
 .summoner_data {
   display: flex;
+  padding: 1px;
 }
 
 .champion_image {
   width: 50px;
   height: 50px;
+  margin-right: 2px;
 }
-
+.item_container {
+  display: flex;
+  align-items: center;
+}
 .item_container .item {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  margin: 1px;
 }
 .summoner_data .summoner_name {
-  width: 150px;
+  width: 170px;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .summoner_data .summoner_kda {
-  width: 80px;
-  text-align: center;
+  width: 70px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .summoner_data .spell_image_container {

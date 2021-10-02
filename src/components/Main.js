@@ -5,7 +5,7 @@ import "./Main.css";
 import UserData from "./UserData.js";
 
 function Main({ nickName }) {
-  const apiKey = "RGAPI-031b77ce-f35c-4c2a-b281-0fcb674c9509";
+  const apiKey = "RGAPI-20dd248b-2741-48d8-8400-a13fccc1af5f";
   const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState([]);
@@ -15,64 +15,64 @@ function Main({ nickName }) {
   const [spellInfo, setSpellInfo] = useState();
   const [isNetworkError, setIsNetworkError] = useState(false);
 
-  const getSummonerData = async () => {
-    console.log("getSummonerData() 1");
-    const result = await axios.get(
-      `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickName}?api_key=${apiKey}`
-    );
-    console.log("getSummonerData() 2");
-    return result.data;
-  };
-
-  const getLeagueV4 = async (encryptedId) => {
-    console.log("getLeagueV4()");
-    const result = await axios.get(
-      `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encryptedId}?api_key=${apiKey}`
-    );
-    return result.data;
-  };
-
-  const getMatchId = async (puuid) => {
-    console.log("getMatchId()");
-    const result = await axios.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${matchNumber}&api_key=${apiKey}`
-    );
-
-    return result.data;
-  };
-
-  const getMatchInfo = async (matchlist) => {
-    console.log("getMatchInfo()");
-    const matchinfos = await Promise.all(
-      matchlist.map(async (match) => {
-        const result = await axios.get(
-          `https://asia.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${apiKey}`
-        );
-        return result.data;
-      })
-    );
-    return matchinfos;
-  };
-
-  const getQueueIdJson = async () => {
-    await axios
-      .get(`https://static.developer.riotgames.com/docs/lol/queues.json`)
-      .then((response) => {
-        setQueueIdInfo(response.data);
-      });
-  };
-
-  const getSpellInfoJson = async () => {
-    await axios
-      .get(
-        `http://ddragon.leagueoflegends.com/cdn/11.19.1/data/en_US/summoner.json`
-      )
-      .then((response) => {
-        setSpellInfo(response.data);
-      });
-  };
-
   useEffect(() => {
+    const getSummonerData = async () => {
+      console.log("getSummonerData() 1");
+      const result = await axios.get(
+        `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickName}?api_key=${apiKey}`
+      );
+      console.log("getSummonerData() 2");
+      return result.data;
+    };
+
+    const getLeagueV4 = async (encryptedId) => {
+      console.log("getLeagueV4()");
+      const result = await axios.get(
+        `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encryptedId}?api_key=${apiKey}`
+      );
+      return result.data;
+    };
+
+    const getMatchId = async (puuid) => {
+      console.log("getMatchId()");
+      const result = await axios.get(
+        `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${matchNumber}&api_key=${apiKey}`
+      );
+
+      return result.data;
+    };
+
+    const getMatchInfo = async (matchlist) => {
+      console.log("getMatchInfo()");
+      const matchinfos = await Promise.all(
+        matchlist.map(async (match) => {
+          const result = await axios.get(
+            `https://asia.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${apiKey}`
+          );
+          return result.data;
+        })
+      );
+      return matchinfos;
+    };
+
+    const getQueueIdJson = async () => {
+      await axios
+        .get(`https://static.developer.riotgames.com/docs/lol/queues.json`)
+        .then((response) => {
+          setQueueIdInfo(response.data);
+        });
+    };
+
+    const getSpellInfoJson = async () => {
+      await axios
+        .get(
+          `http://ddragon.leagueoflegends.com/cdn/11.19.1/data/en_US/summoner.json`
+        )
+        .then((response) => {
+          setSpellInfo(response.data);
+        });
+    };
+
     if (nickName) {
       setIsLoading(true);
       setIsNetworkError(false);
@@ -87,7 +87,6 @@ function Main({ nickName }) {
           getLeagueV4(rsts.id)
             .then((rsts) => {
               setLeagueV4(rsts);
-              console.log("rsts :", rsts);
             })
             .catch(() => {
               setLeagueV4([]);
@@ -129,14 +128,15 @@ function Main({ nickName }) {
   return (
     <section className="main_container">
       {nickName ? (
-        <div>
+        <>
           {isLoading ? (
             <div className="loader"> Loading... </div>
           ) : (
-            <div>
+            <>
               {isNetworkError ? (
                 <div>
-                  데이터를 불러오지 못하였습니다. 관리자에게 문의해주세요.
+                  데이터를 불러오지 못하였습니다. 소환사 이름을 확인하거나
+                  관리자에게 문의해주세요.
                 </div>
               ) : (
                 <div>
@@ -146,6 +146,7 @@ function Main({ nickName }) {
                       return (
                         <Match
                           key={match.info.gameId}
+                          nickName={nickName}
                           info={match.info}
                           queueIdInfoJson={queueIdInfo}
                           spellInfoJson={spellInfo}
@@ -158,9 +159,9 @@ function Main({ nickName }) {
                   </div>
                 </div>
               )}
-            </div>
+            </>
           )}
-        </div>
+        </>
       ) : (
         <div className="searcher">검색해주세요</div>
       )}

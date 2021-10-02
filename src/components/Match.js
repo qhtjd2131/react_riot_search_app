@@ -1,7 +1,8 @@
 import React from "react";
 import "./Match.css";
 
-function Match({ info, queueIdInfoJson, spellInfoJson }) {
+function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
+  didSummonerWin();
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
       const minutes = parseInt(millisecond / 60000);
@@ -10,19 +11,30 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
       let result = 0;
       if (minutes > 59) {
         const hours = parseInt(minutes / 60);
-        result = hours + "시 ";
+        result = hours + " hours ";
       } else {
         result = minutes + "분 " + seconds + "초";
       }
-
       return result;
     }
   }
-  function did_win(first_user_in_team) {
-    if (info.participants[first_user_in_team].win) {
-      return "승 리";
+
+  function didSummonerWin() {
+    const participants = info.participants;
+    const result = participants.filter((i) => i.summonerName === nickName);
+    const result2 = { ...result[0] };
+
+    if (result2.win) {
+      return <div className="match_header_win">WIN</div>;
     } else {
-      return "패 배";
+      return <div className="match_header_loss">LOSS</div>;
+    }
+  }
+  function whichTeamWin(first_user_in_team) {
+    if (info.participants[first_user_in_team].win) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -31,15 +43,15 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
 
     const queueId = info.queueId;
     if (queueId === 420) {
-      return "솔로랭크";
+      return "SOLO RANK";
     } else if (queueId === 430) {
-      return "일반";
+      return "NORMAL";
     } else if (queueId === 440) {
-      return "자유랭크";
+      return "FLEX RANK";
     } else if (queueId === 900) {
       return "URF";
     } else if (queueId === 450) {
-      return "칼바람";
+      return "Howling Abyss";
     }
     return result[0].description;
   }
@@ -61,8 +73,12 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
 
   function getSpellInfo(participant) {
     const result = Object.entries(spellInfoJson.data).map((a) => a[1]);
-    const result2 = result.filter((i) => i.key == participant.summoner1Id)[0];
-    const result3 = result.filter((i) => i.key == participant.summoner2Id)[0];
+    const result2 = result.filter((i) => {
+      return parseInt(i.key) === participant.summoner1Id;
+    })[0];
+    const result3 = result.filter(
+      (i) => parseInt(i.key) === participant.summoner2Id
+    )[0];
 
     return (
       <div className="spell_image_container">
@@ -87,7 +103,7 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
     const currentTime = currentTime_Object.getTime();
 
     const time_dp = currentTime - info.gameStartTimestamp - info.gameDuration;
-    const result = millisecond_to_minute_second(time_dp) + " 전에 게임종료";
+    const result = millisecond_to_minute_second(time_dp) + "ago";
 
     return result;
   }
@@ -125,21 +141,27 @@ function Match({ info, queueIdInfoJson, spellInfoJson }) {
 
   return (
     <div className="match">
-      {/* <div className="gamemode">match mode : {info.gameMode}</div> */}
-      <div className="gameduration">
-        게임시간 : {millisecond_to_minute_second(info.gameDuration)}
+      <div className="match_header">
+        {didSummonerWin()}
+        <div className="center">
+          <div className="queueType"> {getQueueType()}</div>
+          <div className="gameduration">
+            {millisecond_to_minute_second(info.gameDuration)}
+          </div>
+        </div>
+        <div className="time_dp">{getTime_didPlay()}</div>
       </div>
-      <div className="time_dp">{getTime_didPlay()}</div>
-      <div className="queueType"> 큐 타입 : {getQueueType()}</div>
       <div className="team">
         <div className="teamA">
-          <div className="win_or_loss">{did_win(0)}</div>
-          {Team(0, 5)}
+          <div className={whichTeamWin(0) ? "winner" : "looser"}>
+            {Team(0, 5)}
+          </div>
         </div>
 
         <div className="teamB">
-          <div className="win_or_loss">{did_win(5)}</div>
-          {Team(5, 10)}
+          <div className={whichTeamWin(5) ? "winner" : "looser"}>
+            {Team(5, 10)}
+          </div>
         </div>
       </div>
     </div>
