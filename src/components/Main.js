@@ -163,7 +163,7 @@ function Main({ nickName }) {
           )}
         </>
       ) : (
-        <div className="searcher">검색해주세요</div>
+        <div className="searcher">검색해주세요!!!!!!!!!!!!!!!!!!!!!!</div>
       )}
     </section>
   );
