@@ -19,6 +19,8 @@ function Match({ exactName, info, queueIdInfoJson, spellInfoJson }) {
     }
   }
 
+
+  
   
 
   function didSummonerWin() {
