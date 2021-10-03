@@ -52,7 +52,7 @@ function UserData({ userData, leagueV4 }) {
     return (
       <div className="summoner_icon">
         <img
-          src={`http://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${userData.profileIconId}.png`}
           alt="소환사 아이콘"
           title="소환사 아이콘"
         />

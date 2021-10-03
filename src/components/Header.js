@@ -13,11 +13,16 @@ function Header({ setNickNamae_in_header }) {
     };
 
     const handleSearchButton = () => {
-
-      setNickNamae_in_header(input.toLowerCase());
-      const string = "가자ABC";
-      console.log(string.toLowerCase());
-      setInput("");
+      if (input.length > 0 && input.length < 3) {
+        const result = input.split("").join(" ");
+        setNickNamae_in_header(""); //같은 소환사 닉네임을 검색 하더라도 usestate를 변경해 rerendering 하기위해
+        setNickNamae_in_header(result.toLowerCase());
+        setInput("");
+      } else {
+        setNickNamae_in_header(""); //같은 소환사 닉네임을 검색 하더라도 usestate를 변경해 rerendering 하기위해
+        setNickNamae_in_header(input.toLowerCase());
+        setInput("");
+      }
     };
 
     return (

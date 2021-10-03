@@ -23,9 +23,12 @@
   align-self: center;
 }
 .match .match_header_win {
+  font-weight: 700;
   color: blue;
 }
 .match .match_header_loss {
+  font-weight: 700;
+
   color: red;
 }
 .match .match_header .center {
@@ -62,15 +65,28 @@
   flex-direction: column;
   width: 620px;
 }
+.teamA {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.teamB {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
 
 .winner {
   padding: 15px;
-  background-color: #6cd3e2;
+  background-color: #a3cfec;
+  border-color: #99b9cf;
+  border-radius: inherit;
 }
 
 .looser {
   padding: 15px;
-  background-color: #e09ea7;
+  background-color: #e2b6b3;
+  border-color: #cea7a7;
+  border-radius: inherit;
 }
 .summoner_data {
   display: flex;

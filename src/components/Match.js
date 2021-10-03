@@ -1,7 +1,7 @@
 import React from "react";
 import "./Match.css";
 
-function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
+function Match({ exactName, info, queueIdInfoJson, spellInfoJson }) {
   didSummonerWin();
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
@@ -21,9 +21,7 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
 
   function didSummonerWin() {
     const participants = info.participants;
-    const result = participants.filter(
-      (i) => i.summonerName.toLowerCase() === nickName
-    );
+    const result = participants.filter((i) => i.summonerName === exactName);
     const result2 = { ...result[0] };
 
     if (result2.win) {

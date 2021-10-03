@@ -8,12 +8,13 @@ function Main({ nickName }) {
   const apiKey = "RGAPI-20dd248b-2741-48d8-8400-a13fccc1af5f";
   const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
+  const [isNetworkError, setIsNetworkError] = useState(false);
   const [userData, setUserData] = useState([]);
   const [leagueV4, setLeagueV4] = useState([]);
   const [matchInfo, setMatchInfo] = useState([]);
   const [queueIdInfo, setQueueIdInfo] = useState();
   const [spellInfo, setSpellInfo] = useState();
-  const [isNetworkError, setIsNetworkError] = useState(false);
+  const [exactName, setExactName] = useState("");
 
   useEffect(() => {
     const getSummonerData = async () => {
@@ -80,6 +81,7 @@ function Main({ nickName }) {
       getSpellInfoJson(); //스펠 JSON 가져오기
       getSummonerData()
         .then((rsts) => {
+          setExactName(rsts.name);
           setUserData({ ...rsts });
           return rsts;
         })
@@ -146,7 +148,7 @@ function Main({ nickName }) {
                       return (
                         <Match
                           key={match.info.gameId}
-                          nickName={nickName}
+                          exactName={exactName}
                           info={match.info}
                           queueIdInfoJson={queueIdInfo}
                           spellInfoJson={spellInfo}
@@ -163,7 +165,7 @@ function Main({ nickName }) {
           )}
         </>
       ) : (
-        <div className="searcher">검색해주세요!!!!!!!!!!!!!!!!!!!!!!</div>
+        <div className="searcher">검색해주세요</div>
       )}
     </section>
   );
