@@ -13,7 +13,10 @@ function Header({ setNickNamae_in_header }) {
     };
 
     const handleSearchButton = () => {
-      setNickNamae_in_header(input);
+
+      setNickNamae_in_header(input.toLowerCase());
+      const string = "가자ABC";
+      console.log(string.toLowerCase());
       setInput("");
     };
 

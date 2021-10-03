@@ -13,7 +13,7 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
         const hours = parseInt(minutes / 60);
         result = hours + " hours ";
       } else {
-        result = minutes + "분 " + seconds + "초";
+        result = minutes + "m " + seconds + "s ";
       }
       return result;
     }
@@ -21,7 +21,9 @@ function Match({ nickName, info, queueIdInfoJson, spellInfoJson }) {
 
   function didSummonerWin() {
     const participants = info.participants;
-    const result = participants.filter((i) => i.summonerName === nickName);
+    const result = participants.filter(
+      (i) => i.summonerName.toLowerCase() === nickName
+    );
     const result2 = { ...result[0] };
 
     if (result2.win) {
