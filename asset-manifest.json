@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react_riot_search_app/static/css/main.90892329.chunk.css",
-    "main.js": "/react_riot_search_app/static/js/main.4d0bf1b3.chunk.js",
-    "main.js.map": "/react_riot_search_app/static/js/main.4d0bf1b3.chunk.js.map",
+    "main.css": "/react_riot_search_app/static/css/main.53644e60.chunk.css",
+    "main.js": "/react_riot_search_app/static/js/main.412c293c.chunk.js",
+    "main.js.map": "/react_riot_search_app/static/js/main.412c293c.chunk.js.map",
     "runtime-main.js": "/react_riot_search_app/static/js/runtime-main.d0adc29e.js",
     "runtime-main.js.map": "/react_riot_search_app/static/js/runtime-main.d0adc29e.js.map",
     "static/js/2.8a5b40f5.chunk.js": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js",
     "static/js/2.8a5b40f5.chunk.js.map": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js.map",
     "index.html": "/react_riot_search_app/index.html",
-    "static/css/main.90892329.chunk.css.map": "/react_riot_search_app/static/css/main.90892329.chunk.css.map",
+    "static/css/main.53644e60.chunk.css.map": "/react_riot_search_app/static/css/main.53644e60.chunk.css.map",
     "static/js/2.8a5b40f5.chunk.js.LICENSE.txt": "/react_riot_search_app/static/js/2.8a5b40f5.chunk.js.LICENSE.txt",
     "static/media/Emblem_Bronze.ad96bf19.png": "/react_riot_search_app/static/media/Emblem_Bronze.ad96bf19.png",
     "static/media/Emblem_Challenger.bcddbed6.png": "/react_riot_search_app/static/media/Emblem_Challenger.bcddbed6.png",
@@ -23,7 +23,7 @@
   "entrypoints": [
     "static/js/runtime-main.d0adc29e.js",
     "static/js/2.8a5b40f5.chunk.js",
-    "static/css/main.90892329.chunk.css",
-    "static/js/main.4d0bf1b3.chunk.js"
+    "static/css/main.53644e60.chunk.css",
+    "static/js/main.412c293c.chunk.js"
   ]
 }
