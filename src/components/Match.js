@@ -19,6 +19,8 @@ function Match({ exactName, info, queueIdInfoJson, spellInfoJson }) {
     }
   }
 
+  
+
   function didSummonerWin() {
     const participants = info.participants;
     const result = participants.filter((i) => i.summonerName === exactName);
