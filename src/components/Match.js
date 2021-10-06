@@ -2,7 +2,7 @@ import React from "react";
 import "./Match.css";
 
 function Match({ exactName, info, queueIdInfoJson, spellInfoJson }) {
-  didSummonerWin();
+  // didSummonerWin();
   function millisecond_to_minute_second(millisecond) {
     if (millisecond) {
       const minutes = parseInt(millisecond / 60000);
@@ -18,10 +18,6 @@ function Match({ exactName, info, queueIdInfoJson, spellInfoJson }) {
       return result;
     }
   }
-
-
-
-
 
   function didSummonerWin() {
     const participants = info.participants;
