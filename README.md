@@ -8,7 +8,8 @@ Riot Api를 활용하여 전적검색 사이트 만들기
 
 **현재 Riot API key 재발급 필요**
 ```
-"npm run start"
+npm install
+npm run start
 ```
   
 ---
