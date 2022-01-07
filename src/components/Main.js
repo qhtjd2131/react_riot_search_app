@@ -5,7 +5,7 @@ import "./Main.css";
 import UserData from "./UserData.js";
 
 function Main({ nickName }) {
-  const apiKey = "RGAPI-20dd248b-2741-48d8-8400-a13fccc1af5f";
+  const apiKey = "RGAPI-9bcee12c-249f-4452-95ed-c4dacb096b38";
   const matchNumber = 3; //화면에 보여질 전적 갯수
   const [isLoading, setIsLoading] = useState(true);
   const [isNetworkError, setIsNetworkError] = useState(false);
